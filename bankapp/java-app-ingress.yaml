@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: java-app-ingress
+  namespace: bankapp
+spec:
+  ingressClassName: external-nginx
+  rules:
+  - host: k8s-ingress-external-cd564c2ff7-28c937f418df22b9.elb.us-east-2.amazonaws.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: java-app-service
+            port: 
+              number: 80
